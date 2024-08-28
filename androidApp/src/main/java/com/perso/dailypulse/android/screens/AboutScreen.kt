@@ -1,4 +1,4 @@
-package com.perso.dailypulse.android
+package com.perso.dailypulse.android.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
