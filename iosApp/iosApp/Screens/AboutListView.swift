@@ -26,7 +26,7 @@ struct AboutListView: View {
                 title: "Device", subtitle: platform.deviceModel
             ),
             .init(
-                title: "Density", subtitle: "\(platform.density)"
+                title: "Density", subtitle: "@\(platform.density)x"
             )
         ]
         

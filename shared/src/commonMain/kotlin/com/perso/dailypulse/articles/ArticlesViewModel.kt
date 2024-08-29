@@ -31,7 +31,7 @@ class ArticlesViewModel : BaseViewModel() {
         return listOf(
             Article(
                 title = "title",
-                description = "description",
+                desc = "description",
                 date = "2024-08-29",
                 imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwyXeKDN29AmZgZPLS7n0Bepe8QmVappBwZCeA3XWEbWNdiDFB"
             )
