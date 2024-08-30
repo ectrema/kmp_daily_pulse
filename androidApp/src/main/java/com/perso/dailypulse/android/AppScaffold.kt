@@ -15,16 +15,15 @@ import com.perso.dailypulse.android.screens.Screens
 import com.perso.dailypulse.articles.ArticlesViewModel
 
 @Composable
-fun AppScaffold(articlesViewModel: ArticlesViewModel) {
+fun AppScaffold() {
     val navController = rememberNavController()
 
     Scaffold {
         AppNavHost(
-            navController= navController,
+            navController = navController,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it),
-            articlesViewModel
         )
     }
 
@@ -34,18 +33,17 @@ fun AppScaffold(articlesViewModel: ArticlesViewModel) {
 fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    articlesViewModel: ArticlesViewModel
 ) {
     NavHost(
         navController = navController,
-        startDestination= Screens.ARTICLES.route,
-        modifier=modifier,
+        startDestination = Screens.ARTICLES.route,
+        modifier = modifier,
     ) {
         composable(Screens.ARTICLES.route) {
-            ArticlesScreen(onAboutClick = { navController.navigate(Screens.ABOUT_DEVICE.route )}, articlesViewModel = articlesViewModel )
+            ArticlesScreen(onAboutClick = { navController.navigate(Screens.ABOUT_DEVICE.route) })
         }
         composable(Screens.ABOUT_DEVICE.route) {
-            AboutScreen(onUpClick = { navController.popBackStack() } )
+            AboutScreen(onUpClick = { navController.popBackStack() })
         }
     }
 

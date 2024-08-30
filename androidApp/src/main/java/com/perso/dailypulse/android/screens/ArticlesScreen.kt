@@ -32,11 +32,12 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.perso.dailypulse.articles.Article
 import com.perso.dailypulse.articles.ArticlesViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ArticlesScreen(
     onAboutClick: () -> Unit,
-    articlesViewModel: ArticlesViewModel,
+    articlesViewModel: ArticlesViewModel = koinViewModel(),
 ) {
     val state = articlesViewModel.articlesState.collectAsState()
 
@@ -111,7 +112,8 @@ private fun ArticlesItem(article: Article) {
         AsyncImage(
             model = article.imageUrl,
             contentDescription = null,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(

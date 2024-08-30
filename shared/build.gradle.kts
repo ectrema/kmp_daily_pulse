@@ -13,7 +13,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -30,7 +30,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.bundles.ktor.common)
             implementation(libs.kotlinx.datetime)
-
+            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

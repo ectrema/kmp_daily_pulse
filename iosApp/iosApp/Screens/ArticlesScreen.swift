@@ -15,7 +15,7 @@ extension ArticlesScreen {
         let articlesViewModel: ArticlesViewModel
         
         init() {
-            articlesViewModel = ArticlesViewModel()
+            articlesViewModel = ArticlesInjector().articlesViewModel
             articlesState = articlesViewModel.articlesState.value
         }
         
@@ -36,7 +36,6 @@ struct ArticlesScreen: View {
     
     var body: some View {
         VStack {
-            AppBar()
             if viewModel.articlesState.loading {
                 Loader()
             }
@@ -55,12 +54,6 @@ struct ArticlesScreen: View {
         }.onAppear {
             self.viewModel.startObserving()
         }
-    }
-}
-
-struct AppBar: View {
-    var body: some View {
-        Text("Articles").font(.largeTitle).fontWeight(.bold)
     }
 }
 
@@ -87,7 +80,7 @@ struct ArticleItem: View {
                 if let image = phase.image {
                     image
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fit).cornerRadius(12)
                 } else if phase.error != nil {
                     Text("Image Load Error")
                 } else {
