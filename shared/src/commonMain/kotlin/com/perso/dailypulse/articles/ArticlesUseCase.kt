@@ -8,22 +8,23 @@ import kotlinx.datetime.toLocalDateTime
 import kotlinx.datetime.todayIn
 import kotlin.math.abs
 
-class ArticlesUseCase(private val articlesService: ArticlesService) {
+class ArticlesUseCase(private val articlesRepository: ArticlesRepository) {
 
-    suspend fun getArticles(): List<Article> {
-        val articlesRaw = articlesService.fetchArticles()
+    suspend fun getArticles(): List<ArticleEntity> {
+        val articlesRaw = articlesRepository.getArticles()
         return mapArticles(articlesRaw)
     }
 
-    private fun mapArticles(articleRaw: List<ArticleRaw>): List<Article> = articleRaw.map { raw ->
-        Article(
-            title = raw.title,
-            date = convertDate(raw.date),
-            desc = raw.desc ?: "No description",
-            imageUrl = raw.imgUrl
-                ?: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwyXeKDN29AmZgZPLS7n0Bepe8QmVappBwZCeA3XWEbWNdiDFB",
-        )
-    }
+    private fun mapArticles(articleRaw: List<ArticleRaw>): List<ArticleEntity> =
+        articleRaw.map { raw ->
+            ArticleEntity(
+                title = raw.title,
+                date = convertDate(raw.date),
+                desc = raw.desc ?: "No description",
+                imageUrl = raw.imgUrl
+                    ?: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwyXeKDN29AmZgZPLS7n0Bepe8QmVappBwZCeA3XWEbWNdiDFB",
+            )
+        }
 
     private fun convertDate(date: String): String {
         val today = Clock.System.todayIn(TimeZone.currentSystemDefault())

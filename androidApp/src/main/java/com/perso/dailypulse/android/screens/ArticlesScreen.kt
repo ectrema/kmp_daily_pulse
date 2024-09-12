@@ -30,7 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.perso.dailypulse.articles.Article
+import com.perso.dailypulse.articles.ArticleEntity
 import com.perso.dailypulse.articles.ArticlesViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -94,7 +94,7 @@ private fun ErrorBody(message: String) {
 }
 
 @Composable
-private fun ArticlesListView(items: List<Article>) {
+private fun ArticlesListView(items: List<ArticleEntity>) {
     LazyColumn {
         items(items) { article ->
             ArticlesItem(article = article)
@@ -103,7 +103,7 @@ private fun ArticlesListView(items: List<Article>) {
 }
 
 @Composable
-private fun ArticlesItem(article: Article) {
+private fun ArticlesItem(article: ArticleEntity) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

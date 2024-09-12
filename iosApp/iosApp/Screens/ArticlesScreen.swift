@@ -71,7 +71,7 @@ struct ErrorBody: View {
 }
 
 struct ArticleItem: View {
-    var article: Article
+    var article: ArticleEntity
     
     var body: some View {
         

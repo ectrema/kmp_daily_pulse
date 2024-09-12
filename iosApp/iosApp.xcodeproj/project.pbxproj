@@ -14,6 +14,7 @@
 		C81075022C805C85005DA1AA /* ArticlesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81075012C805C85005DA1AA /* ArticlesScreen.swift */; };
 		C865B8872C7F48CF001B3622 /* AbountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865B8862C7F48CF001B3622 /* AbountScreen.swift */; };
 		C88FDF882C7F412400ECB2C6 /* AboutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88FDF872C7F412400ECB2C6 /* AboutListView.swift */; };
+		C8F239732C93522D00AD0EF2 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F239722C93522D00AD0EF2 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		C81075012C805C85005DA1AA /* ArticlesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesScreen.swift; sourceTree = "<group>"; };
 		C865B8862C7F48CF001B3622 /* AbountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbountScreen.swift; sourceTree = "<group>"; };
 		C88FDF872C7F412400ECB2C6 /* AboutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListView.swift; sourceTree = "<group>"; };
+		C8F239722C93522D00AD0EF2 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8F239732C93522D00AD0EF2 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +96,7 @@
 		7555FFB0242A642200829871 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8F239722C93522D00AD0EF2 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
