@@ -1,4 +1,4 @@
-package com.perso.dailypulse.articles
+package com.perso.dailypulse.articles.data
 
 class ArticlesRepository(
     private val dataSource: ArticlesDataSource,

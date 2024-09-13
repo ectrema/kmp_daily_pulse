@@ -1,10 +1,10 @@
 package com.perso.dailypulse.articles.di
 
-import com.perso.dailypulse.articles.ArticlesDataSource
-import com.perso.dailypulse.articles.ArticlesRepository
-import com.perso.dailypulse.articles.ArticlesService
-import com.perso.dailypulse.articles.ArticlesUseCase
-import com.perso.dailypulse.articles.ArticlesViewModel
+import com.perso.dailypulse.articles.data.ArticlesDataSource
+import com.perso.dailypulse.articles.data.ArticlesRepository
+import com.perso.dailypulse.articles.data.ArticlesService
+import com.perso.dailypulse.articles.domain.ArticlesUseCase
+import com.perso.dailypulse.articles.presentation.ArticlesViewModel
 import org.koin.dsl.module
 
 val articlesModule = module {

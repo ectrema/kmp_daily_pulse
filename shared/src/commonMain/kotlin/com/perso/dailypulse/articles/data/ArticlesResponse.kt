@@ -1,4 +1,4 @@
-package com.perso.dailypulse.articles
+package com.perso.dailypulse.articles.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -12,5 +12,5 @@ data class ArticlesResponse(
     val totalResults: Int,
 
     @SerialName("articles")
-    val articles: List<ArticleRaw>
+    val articles: List<ArticleRaw>,
 )

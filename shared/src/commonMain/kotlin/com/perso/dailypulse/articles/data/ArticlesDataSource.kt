@@ -1,4 +1,4 @@
-package com.perso.dailypulse.articles
+package com.perso.dailypulse.articles.data
 
 import com.benjamin.daily.pulse.db.DailyPulseDatabase
 

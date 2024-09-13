@@ -1,4 +1,4 @@
-package com.perso.dailypulse.articles
+package com.perso.dailypulse.articles.data
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -12,7 +12,8 @@ class ArticlesService(private val client: HttpClient) {
 
     suspend fun fetchArticles(): List<ArticleRaw> {
         val response: ArticlesResponse =
-            client.get("https://newsapi.org/v2/top-headlines?country=$country&category=$category&apiKey=$apiKey").body()
+            client.get("https://newsapi.org/v2/top-headlines?country=$country&category=$category&apiKey=$apiKey")
+                .body()
 
         return response.articles
     }
