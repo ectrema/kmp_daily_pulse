@@ -7,12 +7,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -43,9 +45,8 @@ fun ArticlesScreen(
 
     Column {
         AppBar(onAboutClick)
-        if (state.value.loading) Loader()
         if (state.value.error != null) ErrorBody(message = state.value.error!!)
-        if (state.value.articles.isNotEmpty()) ArticlesListView(state.value.articles)
+        if (state.value.articles.isNotEmpty()) ArticlesListView(viewModel = articlesViewModel)
     }
 }
 
@@ -54,31 +55,13 @@ fun ArticlesScreen(
 private fun AppBar(
     onAboutClick: () -> Unit,
 ) {
-    TopAppBar(
-        title = { Text(text = "Articles") },
-        actions = {
-            IconButton(onClick = onAboutClick) {
-                Icon(
-                    imageVector = Icons.Outlined.Info,
-                    contentDescription = "About Device"
-                )
-            }
+    TopAppBar(title = { Text(text = "Articles") }, actions = {
+        IconButton(onClick = onAboutClick) {
+            Icon(
+                imageVector = Icons.Outlined.Info, contentDescription = "About Device"
+            )
         }
-    )
-}
-
-@Composable
-private fun Loader() {
-    Box(
-        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier.width(64.dp),
-            color = MaterialTheme.colorScheme.surfaceVariant,
-            trackColor = MaterialTheme.colorScheme.secondary
-
-        )
-    }
+    })
 }
 
 @Composable
@@ -93,12 +76,26 @@ private fun ErrorBody(message: String) {
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun ArticlesListView(items: List<ArticleEntity>) {
-    LazyColumn {
-        items(items) { article ->
-            ArticlesItem(article = article)
+private fun ArticlesListView(viewModel: ArticlesViewModel) {
+    val pullRefreshState =
+        rememberPullRefreshState(refreshing = viewModel.articlesState.value.loading,
+            onRefresh = { viewModel.getArticle(true) })
+    Box(
+        modifier = Modifier.pullRefresh(pullRefreshState)
+    ) {
+        LazyColumn {
+            items(viewModel.articlesState.value.articles) { article ->
+                ArticlesItem(article = article)
+            }
         }
+        PullRefreshIndicator(
+            refreshing = viewModel.articlesState.value.loading,
+            state = pullRefreshState,
+            modifier = Modifier.align(Alignment.TopCenter),
+            backgroundColor = if (viewModel.articlesState.value.loading) MaterialTheme.colorScheme.surfaceVariant else MaterialTheme.colorScheme.secondary,
+        )
     }
 }
 
@@ -110,10 +107,7 @@ private fun ArticlesItem(article: ArticleEntity) {
             .padding(16.dp),
     ) {
         AsyncImage(
-            model = article.imageUrl,
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
+            model = article.imageUrl, contentDescription = null, modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
