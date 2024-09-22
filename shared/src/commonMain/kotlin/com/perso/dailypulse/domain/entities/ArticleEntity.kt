@@ -1,4 +1,4 @@
-package com.perso.dailypulse.articles.domain
+package com.perso.dailypulse.domain.entities
 
 data class ArticleEntity(
     val title: String,

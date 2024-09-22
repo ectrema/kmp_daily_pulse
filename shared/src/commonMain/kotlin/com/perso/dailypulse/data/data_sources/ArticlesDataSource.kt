@@ -1,6 +1,7 @@
-package com.perso.dailypulse.articles.data
+package com.perso.dailypulse.data.data_sources
 
 import com.benjamin.daily.pulse.db.DailyPulseDatabase
+import com.perso.dailypulse.data.responses.articles.ArticleRaw
 
 class ArticlesDataSource(private val database: DailyPulseDatabase) {
     fun getAllArticles(): List<ArticleRaw> =

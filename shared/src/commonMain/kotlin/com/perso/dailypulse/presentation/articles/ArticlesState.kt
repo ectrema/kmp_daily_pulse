@@ -1,6 +1,6 @@
-package com.perso.dailypulse.articles.presentation
+package com.perso.dailypulse.presentation.articles
 
-import com.perso.dailypulse.articles.domain.ArticleEntity
+import com.perso.dailypulse.domain.entities.ArticleEntity
 
 data class ArticlesState(
     val articles: List<ArticleEntity> = listOf(),

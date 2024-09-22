@@ -1,7 +1,8 @@
-package com.perso.dailypulse.articles.domain
+package com.perso.dailypulse.domain.use_cases
 
-import com.perso.dailypulse.articles.data.ArticleRaw
-import com.perso.dailypulse.articles.data.ArticlesRepository
+import com.perso.dailypulse.data.repositories.ArticlesRepository
+import com.perso.dailypulse.data.responses.articles.ArticleRaw
+import com.perso.dailypulse.domain.entities.ArticleEntity
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone

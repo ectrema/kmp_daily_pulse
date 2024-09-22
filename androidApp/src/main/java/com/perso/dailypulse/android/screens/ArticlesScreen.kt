@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
@@ -32,19 +33,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.perso.dailypulse.articles.domain.ArticleEntity
-import com.perso.dailypulse.articles.presentation.ArticlesViewModel
+import com.perso.dailypulse.domain.entities.ArticleEntity
+import com.perso.dailypulse.presentation.articles.ArticlesViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ArticlesScreen(
     onAboutClick: () -> Unit,
+    onSourcesClick: () -> Unit,
     articlesViewModel: ArticlesViewModel = koinViewModel(),
 ) {
     val state = articlesViewModel.articlesState.collectAsState()
 
     Column {
-        AppBar(onAboutClick)
+        AppBar(onAboutClick, onSourcesClick)
         if (state.value.error != null) ErrorBody(message = state.value.error!!)
         if (state.value.articles.isNotEmpty()) ArticlesListView(viewModel = articlesViewModel)
     }
@@ -54,11 +56,17 @@ fun ArticlesScreen(
 @Composable
 private fun AppBar(
     onAboutClick: () -> Unit,
+    onSourcesClick: () -> Unit,
 ) {
     TopAppBar(title = { Text(text = "Articles") }, actions = {
         IconButton(onClick = onAboutClick) {
             Icon(
                 imageVector = Icons.Outlined.Info, contentDescription = "About Device"
+            )
+        }
+        IconButton(onClick = onSourcesClick) {
+            Icon(
+                imageVector = Icons.Outlined.Check, contentDescription = "About Device"
             )
         }
     })
